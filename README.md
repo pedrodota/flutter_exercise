@@ -32,16 +32,24 @@ Implement a card component with:
 - Background glow that indicate that card is active.
 - Interactive slider control with KNOBS.
 
-### Exercise 2: Scrollable Content Card with Bottom Blur
+### Exercise 2: Scrollable Content Card with Bottom Blur and Footer Card
 
 **File:** `lib/exercise_2.dart`
 
-Implement a scrollable page with:
+Create a scrollable page with the following structure:
 - Title at the top
 - Card containing a 16:9 aspect ratio image
 - Content section below the image with icon, title/subtitle, and button
 - Description text
-- Fixed blur effect at the bottom of the viewport
+- Add a **blur overlay fixed at the bottom of the viewport**, independent of scroll.
+- Add an additional card in the footer area.
+  
+Implement an animation for the **footer card**:
+
+- The footer card should start **fully off-screen**, positioned below the viewport.
+- As the user **scrolls down**, the footer card should **slide up into view** using a smooth translation animation.
+- As the user **scrolls back up**, the footer card should **slide down and hide again**, returning to its off-screen position.
+
 
 ## Submission Guidelines
 
@@ -49,4 +57,4 @@ Implement a scrollable page with:
 - Ensure responsive behavior across different screen sizes
 - Components must be functional in the Widgetbook environment
 - Commit regularly throughout your development process
-- Submit the link to your forked repository when complete
+- Submit the link to your forked repository when complete by email
