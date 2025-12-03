@@ -18,3 +18,4 @@ final iconHtml = svg('icon_html');
 
 // Animations (Lottie)
 final searchingAnimation = animation('searching');
+final formAndFunAnimation = animation('formAndFun_lottie');

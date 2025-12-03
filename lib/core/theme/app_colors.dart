@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 const black = Color(0xFF000000);
 const white = Color(0xFFFFFFFF);
 const transparent = Color(0x00000000);
+const appBackground = Color(0xFFE8E8E3); // Background padrão do app (Master Color A)
 
 // Master colors (from Figma)
 const masterColorA = Color(0xFFE8E8E3); // Background principal

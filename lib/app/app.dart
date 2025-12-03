@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:formfun_flutter_test/app/routes.dart';
 import 'package:formfun_flutter_test/core/theme/app_theme.dart';
 import 'package:formfun_flutter_test/core/utils/measurements.dart';
-import 'package:formfun_flutter_test/features/splash/presentation/pages/splash_page.dart';
 import 'package:formfun_flutter_test/features/exercise_1/presentation/pages/exercise_1_page.dart';
 import 'package:formfun_flutter_test/features/exercise_2/presentation/pages/exercise_2_page.dart';
 
@@ -15,7 +14,7 @@ class App extends StatelessWidget {
       title: 'Form&Fun Flutter Test',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,
-      initialRoute: AppRoutes.splash,
+      initialRoute: AppRoutes.exercise1,
       onGenerateRoute: _onGenerateRoute,
       builder: (context, child) {
         AppMeasurements.setAppMeasurements(context);
@@ -26,10 +25,6 @@ class App extends StatelessWidget {
 
   Route<dynamic>? _onGenerateRoute(RouteSettings settings) {
     switch (settings.name) {
-      case AppRoutes.splash:
-        return MaterialPageRoute(
-          builder: (_) => const SplashPage(),
-        );
       case AppRoutes.exercise1:
         return MaterialPageRoute(
           builder: (_) => const Exercise1Page(),
@@ -40,7 +35,7 @@ class App extends StatelessWidget {
         );
       default:
         return MaterialPageRoute(
-          builder: (_) => const SplashPage(),
+          builder: (_) => const Exercise1Page(),
         );
     }
   }
