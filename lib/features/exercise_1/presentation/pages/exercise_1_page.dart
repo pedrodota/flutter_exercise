@@ -5,6 +5,7 @@ import 'package:formfun_flutter_test/core/shared/presentation/backgrounds/base_b
 import 'package:formfun_flutter_test/core/utils/navigator.dart';
 import 'package:formfun_flutter_test/features/exercise_1/presentation/controller/exercise_1_controller.dart';
 import 'package:formfun_flutter_test/features/exercise_1/presentation/widgets/exercise_1_card_widget.dart';
+import 'package:formfun_flutter_test/features/exercise_2/presentation/pages/exercise_2_page.dart';
 
 class Exercise1Page extends StatefulWidget {
   const Exercise1Page({super.key});
@@ -18,6 +19,17 @@ class _Exercise1PageState extends MState<Exercise1Page, Exercise1Controller> {
   void initState() {
     registerController(Exercise1Controller());
     super.initState();
+
+    // Configura callback para navegar ao Exercise 2 quando completar
+    controller.onComplete = _navigateToExercise2;
+  }
+
+  void _navigateToExercise2() {
+    Navigator.of(context).pushReplacement(
+      MaterialPageRoute(
+        builder: (context) => const Exercise2Page(),
+      ),
+    );
   }
 
   @override
@@ -32,7 +44,7 @@ class _Exercise1PageState extends MState<Exercise1Page, Exercise1Controller> {
               padding: EdgeInsets.only(bottom: 3.h),
               child: Exercise1CardWidget(
                 title: 'Loading File',
-                subtitle: '1m 30s',
+                subtitle: controller.elapsedTimeFormatted,
                 percentage: animatedValue,
               ),
             ),

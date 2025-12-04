@@ -40,7 +40,7 @@ class Exercise1CardWidget extends StatelessWidget {
             offset: const Offset(0, 4),
           ),
           BoxShadow(
-            color: const Color(0xFF7E52F4).withOpacity(0.15),
+            color: const Color(0xFF7E52F4).withValues(alpha: 0.15),
             blurRadius: 12,
             spreadRadius: 0,
             offset: const Offset(0, 16),

@@ -5,20 +5,6 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Update Golden Tests - Exercise 1",
-            "type": "dart",
-            "request": "launch",
-            "program": "test/golden/exercise_1/exercise_1_test.dart",
-            "args": ["--update-goldens"]
-        },
-        {
-            "name": "Update All Golden Tests",
-            "type": "dart",
-            "request": "launch",
-            "program": "test/",
-            "args": ["--update-goldens"]
-        },
-        {
             "name": "flutter_exercise",
             "request": "launch",
             "type": "dart"

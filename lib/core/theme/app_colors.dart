@@ -7,7 +7,7 @@ const transparent = Color(0x00000000);
 const appBackground = Color(0xFFE8E8E3); // Background padrão do app (Master Color A)
 
 // Master colors (from Figma)
-const masterColorA = Color(0xFFE8E8E3); // Background principal
+const masterColorA = appBackground; // Background principal
 const masterColorB = Color(0xFF9A73F5); // Accent/borda ativa (roxo)
 
 // Card colors

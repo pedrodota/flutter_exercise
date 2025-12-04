@@ -15,6 +15,7 @@ final ffWebsite = image('ff_website');
 
 // SVG
 final iconHtml = svg('icon_html');
+final tagsIcon = svg('tags_icon');
 
 // Animations (Lottie)
 final searchingAnimation = animation('searching');
