@@ -22,23 +22,17 @@ Widget buildExercise1CardWidget(BuildContext context) {
     max: 100,
   );
 
-  return MediaQuery(
-    data: const MediaQueryData(size: Size(390, 844)),
-    child: Builder(
-      builder: (ctx) {
-        AppMeasurements.setAppMeasurements(ctx);
+  // Initialize measurements with actual viewport size from widgetbook
+  AppMeasurements.setAppMeasurements(context);
 
-        return Scaffold(
-          backgroundColor: ctx.backgroundColor,
-          body: Center(
-            child: Exercise1CardWidget(
-              title: title,
-              subtitle: subtitle,
-              percentage: percentage,
-            ),
-          ),
-        );
-      },
+  return Scaffold(
+    backgroundColor: context.backgroundColor,
+    body: Center(
+      child: Exercise1CardWidget(
+        title: title,
+        subtitle: subtitle,
+        percentage: percentage,
+      ),
     ),
   );
 }

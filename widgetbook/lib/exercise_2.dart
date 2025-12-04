@@ -26,27 +26,21 @@ Widget buildExercise2MainCardWidget(BuildContext context) {
     initialValue: 'Open',
   );
 
-  return MediaQuery(
-    data: const MediaQueryData(size: Size(390, 844)),
-    child: Builder(
-      builder: (ctx) {
-        AppMeasurements.setAppMeasurements(ctx);
+  // Initialize measurements with actual viewport size from widgetbook
+  AppMeasurements.setAppMeasurements(context);
 
-        return Scaffold(
-          backgroundColor: ctx.backgroundColor,
-          body: Center(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Exercise2MainCardWidget(
-                imageAsset: _ffWebsite,
-                title: title,
-                subtitle: subtitle,
-                buttonText: buttonText,
-              ),
-            ),
-          ),
-        );
-      },
+  return Scaffold(
+    backgroundColor: context.backgroundColor,
+    body: Center(
+      child: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Exercise2MainCardWidget(
+          imageAsset: _ffWebsite,
+          title: title,
+          subtitle: subtitle,
+          buttonText: buttonText,
+        ),
+      ),
     ),
   );
 }
@@ -62,23 +56,17 @@ Widget buildExercise2FooterCardWidget(BuildContext context) {
     initialValue: 'formfun.ai',
   );
 
-  return MediaQuery(
-    data: const MediaQueryData(size: Size(390, 844)),
-    child: Builder(
-      builder: (ctx) {
-        AppMeasurements.setAppMeasurements(ctx);
+  // Initialize measurements with actual viewport size from widgetbook
+  AppMeasurements.setAppMeasurements(context);
 
-        return Scaffold(
-          backgroundColor: ctx.backgroundColor,
-          body: Center(
-            child: Exercise2FooterCardWidget(
-              logoAsset: _ffLogo,
-              title: title,
-              subtitle: subtitle,
-            ),
-          ),
-        );
-      },
+  return Scaffold(
+    backgroundColor: context.backgroundColor,
+    body: Center(
+      child: Exercise2FooterCardWidget(
+        logoAsset: _ffLogo,
+        title: title,
+        subtitle: subtitle,
+      ),
     ),
   );
 }
@@ -92,34 +80,28 @@ Widget buildExercise2BlurOverlayWidget(BuildContext context) {
     max: 300,
   );
 
-  return MediaQuery(
-    data: const MediaQueryData(size: Size(390, 844)),
-    child: Builder(
-      builder: (ctx) {
-        AppMeasurements.setAppMeasurements(ctx);
+  // Initialize measurements with actual viewport size from widgetbook
+  AppMeasurements.setAppMeasurements(context);
 
-        return Scaffold(
-          backgroundColor: ctx.backgroundColor,
-          body: Stack(
-            children: [
-              // Content behind blur
-              ListView.builder(
-                itemCount: 20,
-                itemBuilder: (context, index) => ListTile(
-                  title: Text('Item $index'),
-                ),
-              ),
-              // Blur overlay at bottom
-              Positioned(
-                left: 0,
-                right: 0,
-                bottom: 0,
-                child: Exercise2BlurOverlayWidget(height: height),
-              ),
-            ],
+  return Scaffold(
+    backgroundColor: context.backgroundColor,
+    body: Stack(
+      children: [
+        // Content behind blur
+        ListView.builder(
+          itemCount: 20,
+          itemBuilder: (context, index) => ListTile(
+            title: Text('Item $index'),
           ),
-        );
-      },
+        ),
+        // Blur overlay at bottom
+        Positioned(
+          left: 0,
+          right: 0,
+          bottom: 0,
+          child: Exercise2BlurOverlayWidget(height: height),
+        ),
+      ],
     ),
   );
 }
