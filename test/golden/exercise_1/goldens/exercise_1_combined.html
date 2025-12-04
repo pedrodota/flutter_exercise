@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>exercise_1 - All Devices</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            background: #f0f0f0;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+            align-items: center;
+        }
+        .row {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .device {
+            text-align: center;
+        }
+        .device img {
+            border: 2px solid #333;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            max-width: 100%;
+            height: auto;
+        }
+        .device h3 {
+            margin: 10px 0 5px 0;
+            color: #333;
+        }
+        .title {
+            text-align: center;
+            color: #333;
+            margin-bottom: 30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 class="title">exercise_1 - Golden Tests - All Devices</h1>
+    <div class="container">
+        <div class="row phones">
+                        <div class="device">
+                <h3>iPhone_6 (375.0x667.0)</h3>
+                <img src="exercise_1_iPhone_6.png" alt="iPhone_6">
+            </div>
+                        <div class="device">
+                <h3>iPhone_16_Pro (402.0x874.0)</h3>
+                <img src="exercise_1_iPhone_16_Pro.png" alt="iPhone_16_Pro">
+            </div>
+                        <div class="device">
+                <h3>iPhone_16_Pro_Max (440.0x956.0)</h3>
+                <img src="exercise_1_iPhone_16_Pro_Max.png" alt="iPhone_16_Pro_Max">
+            </div>
+            
+        </div>
+        <div class="row tablets">
+                        <div class="device">
+                <h3>Tablet (1024.0x768.0)</h3>
+                <img src="exercise_1_Tablet.png" alt="Tablet">
+            </div>
+                        <div class="device">
+                <h3>Tablet_vertical (768.0x1024.0)</h3>
+                <img src="exercise_1_Tablet_vertical.png" alt="Tablet_vertical">
+            </div>
+            
+        </div>
+    </div>
+</body>
+</html>

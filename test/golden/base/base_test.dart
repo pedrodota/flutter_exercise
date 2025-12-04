@@ -5,6 +5,9 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:golden_toolkit/golden_toolkit.dart';
 import 'package:formfun_flutter_test/core/utils/measurements.dart';
 import 'package:formfun_flutter_test/core/theme/app_theme.dart';
+import 'package:formfun_flutter_test/core/infrastructure/injections/instance_manager_adapter/instance_manager.dart';
+import 'package:formfun_flutter_test/core/infrastructure/injections/instance_manager_config.dart';
+import 'package:formfun_flutter_test/features/exercise_1/presentation/controller/exercise_1_controller.dart';
 
 class Device {
   late final String name;
@@ -252,6 +255,15 @@ void runBaseGoldenTests({
       TestWidgetsFlutterBinding.ensureInitialized();
       await loadAppFonts();
 
+      // Força a criação de golden files
+      autoUpdateGoldenFiles = true;
+
+      // Desabilita Timer em controllers durante testes
+      kIsTest = true;
+
+      // Inicializa o instance manager
+      instanceManager = GetItInstanceManager();
+
       _clearGoldensDirectory(testName);
 
       log('Configuracao inicial concluida');
@@ -264,16 +276,30 @@ void runBaseGoldenTests({
 
     tearDown(() async {
       await Future.delayed(const Duration(milliseconds: 100));
+      instanceManager.reset();
+    });
+
+    tearDownAll(() {
+      instanceManager.reset();
     });
 
     for (var device in devices) {
-      testGoldens('$testName - ${device.deviceName}', (tester) async {
-        await tester.pumpWidgetBuilder(
+      testWidgets('$testName - ${device.deviceName}', (tester) async {
+        tester.view.physicalSize = device.size;
+        tester.view.devicePixelRatio = 1.0;
+
+        await tester.pumpWidget(
           BasePageTestWrapper(page, setupFunction),
-          surfaceSize: device.size,
+        );
+        await tester.pump(const Duration(milliseconds: 500));
+
+        await expectLater(
+          find.byType(MaterialApp),
+          matchesGoldenFile('goldens/${testName}_${device.deviceName}.png'),
         );
 
-        await screenMatchesGolden(tester, '${testName}_${device.deviceName}');
+        tester.view.resetPhysicalSize();
+        tester.view.resetDevicePixelRatio();
       });
     }
 

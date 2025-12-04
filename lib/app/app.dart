@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:formfun_flutter_test/app/routes.dart';
 import 'package:formfun_flutter_test/core/theme/app_theme.dart';
 import 'package:formfun_flutter_test/core/utils/measurements.dart';
@@ -10,7 +11,7 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       title: 'Form&Fun Flutter Test',
       debugShowCheckedModeBanner: false,
       theme: AppTheme.lightTheme,

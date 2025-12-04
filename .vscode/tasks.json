@@ -1,0 +1,29 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Update Golden Tests",
+            "type": "shell",
+            "command": "flutter",
+            "args": [
+                "test",
+                "--update-goldens",
+                "test/golden/"
+            ],
+            "group": "test",
+            "problemMatcher": []
+        },
+        {
+            "label": "Update Golden Tests - Exercise 1",
+            "type": "shell",
+            "command": "flutter",
+            "args": [
+                "test",
+                "--update-goldens",
+                "test/golden/exercise_1/exercise_1_test.dart"
+            ],
+            "group": "test",
+            "problemMatcher": []
+        }
+    ]
+}

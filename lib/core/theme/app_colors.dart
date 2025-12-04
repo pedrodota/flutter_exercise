@@ -8,10 +8,11 @@ const appBackground = Color(0xFFE8E8E3); // Background padrão do app (Master Co
 
 // Master colors (from Figma)
 const masterColorA = Color(0xFFE8E8E3); // Background principal
-const masterColorB = Color(0xFF7E52F4); // Accent/borda ativa (roxo)
+const masterColorB = Color(0xFF9A73F5); // Accent/borda ativa (roxo)
 
 // Card colors
 const cardBackground = Color(0xFFF1F1EF); // Card Background
+const cardBorder = Color(0xFFF1EAFB); // Card border base
 
 // Text colors
 const darkColor = Color(0xFF0E0F10); // Texto principal
@@ -22,6 +23,6 @@ const taglineColor = Color(0xFF808080); // Texto secundário/subtítulo
 const footerBackground = Color(0xFFFFFFFF);
 const footerSubtitleColor = Color(0x80000000); // rgba(0,0,0,0.5)
 
-// Glow/Shadow colors
-const glowColorLight = Color(0x807E52F4); // rgba(126, 82, 244, 0.5)
-const glowColorMedium = Color(0x4D7E52F4); // rgba(126, 82, 244, 0.3)
+// Glow/Shadow colors - #7E52F4 base
+const glowColorLight = Color(0x807E52F4); // #7E52F480 - rgba(126, 82, 244, 0.5)
+const glowColorMedium = Color(0x4D7E52F4); // #7E52F44D - rgba(126, 82, 244, 0.3)

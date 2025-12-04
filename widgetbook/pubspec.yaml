@@ -31,3 +31,30 @@ flutter_launcher_icons:
 
 flutter:
   uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/svg/
+    - assets/animations/
+
+  fonts:
+    - family: AktivGrotesk
+      fonts:
+        - asset: assets/fonts/AktivGrotesk_Hair.ttf
+          weight: 100
+        - asset: assets/fonts/AktivGrotesk_Th.ttf
+          weight: 200
+        - asset: assets/fonts/AktivGrotesk_Lt.ttf
+          weight: 300
+        - asset: assets/fonts/AktivGrotesk_Rg.ttf
+          weight: 400
+        - asset: assets/fonts/AktivGrotesk_Md.ttf
+          weight: 500
+        - asset: assets/fonts/AktivGrotesk_SBd.ttf
+          weight: 600
+        - asset: assets/fonts/AktivGrotesk_Bd.ttf
+          weight: 700
+        - asset: assets/fonts/AktivGrotesk_XBd.ttf
+          weight: 800
+        - asset: assets/fonts/AktivGrotesk_Blk.ttf
+          weight: 900

@@ -18,11 +18,11 @@ import 'package:widgetbook_workspace/exercise_2.dart'
 
 final directories = <_widgetbook.WidgetbookNode>[
   _widgetbook.WidgetbookComponent(
-    name: 'Exercise1',
+    name: 'Exercise1CardWidget',
     useCases: [
       _widgetbook.WidgetbookUseCase(
         name: 'Default',
-        builder: _widgetbook_workspace_exercise_1.buildExercise1,
+        builder: _widgetbook_workspace_exercise_1.buildExercise1CardWidget,
       ),
     ],
   ),
