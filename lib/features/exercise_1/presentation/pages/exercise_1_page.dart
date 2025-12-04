@@ -43,7 +43,7 @@ class _Exercise1PageState extends MState<Exercise1Page, Exercise1Controller> {
             builder: (context, animatedValue, child) => Padding(
               padding: EdgeInsets.only(bottom: 3.h),
               child: Exercise1CardWidget(
-                title: 'Loading File',
+                title: 'loading_file'.tr,
                 subtitle: controller.elapsedTimeFormatted,
                 percentage: animatedValue,
               ),

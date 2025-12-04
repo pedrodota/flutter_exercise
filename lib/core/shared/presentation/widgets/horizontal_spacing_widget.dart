@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:formfun_flutter_test/core/utils/measurements.dart';
 
 class HorizontalSpacing extends StatelessWidget {
   const HorizontalSpacing(this.spacing, {super.key});
@@ -7,8 +8,6 @@ class HorizontalSpacing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * (spacing * 0.01),
-    );
+    return SizedBox(width: spacing.w);
   }
 }

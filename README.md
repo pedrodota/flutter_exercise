@@ -28,28 +28,32 @@ This repository contains two UI exercises implemented in Flutter with focus on *
 ### General
 
 - Custom Launcher Icon
-- Custom Splash Screen with fade-in animation
-- Hero animations between screens
-- Responsive design system with custom sizing extensions
+- Custom App Name: "Form&Fun" (release) / "Form&Fun (Debug)" (debug)
+- Responsive design system with custom sizing extensions (`.w`, `.h`, `.sp`)
+- **Internationalization (i18n)**: PT-BR and EN-US support with GetX
+- **Dynamic Dark Mode**: System-aware theme switching
+- **Accessibility**: Semantics widgets for screen readers
 
 ### Exercise 1: Interactive Card with Percentage Border
 
 - Lottie animated icon with continuous loop
-- Animated border that fills based on slider percentage (0-100%)
+- Animated border that fills based on elapsed time (0-100%)
 - Background glow effect indicating active state
-- Interactive slider control with Widgetbook KNOBS
-- Slide-up button animation for navigation
+- Elapsed time counter display
+- Accessibility labels with Semantics
+- Dynamic colors for dark mode support
 
 ### Exercise 2: Scrollable Content with Animated Footer
 
-- Scrollable page with restaurant card (16:9 image)
+- Scrollable page with main card (16:9 image)
 - Content section with icon, title/subtitle, and button
-- **Blur overlay fixed at bottom** - independent of scroll
-- **Animated footer card**:
-  - Starts off-screen below viewport
-  - Slides up on scroll down
-  - Slides down (hides) on scroll up
-  - Smooth translation animation
+- **Blur overlay** with hide animation when scroll reaches bottom
+- **Animated footer card** that slides up based on main card visibility
+- **Double-back-to-exit** with snackbar notification (2s window)
+- **Micro-animations** with haptic feedback on button press (using GetX)
+- **SVG adaptive colors**: Tag icon turns white in dark mode
+- Error handling for URL launcher
+- All text internationalized (PT-BR/EN-US)
 
 ## Design & Assets
 
@@ -62,25 +66,34 @@ This repository contains two UI exercises implemented in Flutter with focus on *
 
 | Package | Version | Description |
 |---------|---------|-------------|
+| **get** | ^4.6.6 | State management, i18n, and navigation |
+| **get_it** | ^8.0.3 | Dependency injection |
 | **lottie** | ^3.3.1 | High-performance Lottie animations rendering |
 | **flutter_svg** | ^2.0.16 | SVG rendering for scalable vector graphics |
+| **url_launcher** | ^6.2.5 | Open URLs in browser |
 | **golden_toolkit** | ^0.15.0 | Golden tests for visual regression testing |
+| **widgetbook** | ^3.20.2 | Widget catalog and testing |
 
 ### Package Details
 
-1. **lottie**
+1. **get (GetX)**
+   - State management with reactive observables (`.obs`, `Obx`)
+   - Internationalization with `Translations` class
+   - Used for micro-animations state and i18n
+
+2. **lottie**
    - Renders After Effects animations exported as JSON
-   - Used for the animated icon in Exercise 1 (`searching.json`)
-   - Supports looping, progress control, and dynamic updates
+   - Used for animated icon in Exercise 1 (`searching.json`)
+   - Used in Widgetbook home page (`formAndFun_lottie.json`)
 
-2. **flutter_svg**
+3. **flutter_svg**
    - Renders SVG images maintaining quality at any scale
-   - Used for icons and vector graphics throughout the app
+   - Supports `colorFilter` for dynamic theming (dark mode)
 
-3. **golden_toolkit**
+4. **golden_toolkit**
    - Multi-device golden testing support
    - Generates visual snapshots for regression testing
-   - Tests across iPhone, iPad, and various screen sizes
+   - Tests across iPhone 6, iPhone 16 Pro/Max, and Tablets
 
 ## Project Structure
 
@@ -88,59 +101,66 @@ This repository contains two UI exercises implemented in Flutter with focus on *
 lib/
 ├── main.dart                      # Entry point
 ├── app/
-│   ├── app.dart                   # MaterialApp configuration
+│   ├── app.dart                   # GetMaterialApp with i18n config
 │   └── routes.dart                # Named routes
 ├── core/
+│   ├── l10n/
+│   │   └── app_translations.dart  # PT-BR/EN-US translations
 │   ├── theme/
-│   │   ├── app_colors.dart        # Color palette (#E8E8E3, #7E52F4, etc.)
+│   │   ├── app_colors.dart        # Colors + AppColorsExtension (dark mode)
 │   │   ├── app_typography.dart    # Aktiv Grotesk text styles
-│   │   └── app_theme.dart         # ThemeData configuration
+│   │   └── app_theme.dart         # Light/Dark ThemeData
 │   ├── utils/
 │   │   ├── assets.dart            # Asset paths helper
 │   │   ├── measurements.dart      # Responsive sizing (.w, .h, .sp)
-│   │   └── extensions/            # Dart extensions
+│   │   └── navigator.dart         # MState base class
+│   ├── infrastructure/
+│   │   └── injections/            # GetIt dependency injection
 │   └── shared/
 │       └── presentation/
+│           ├── controller/
+│           │   └── base_controller.dart
+│           ├── backgrounds/
+│           │   └── base_background.dart
 │           └── widgets/           # Reusable widgets
 ├── features/
-│   ├── splash/
-│   │   └── presentation/
-│   │       └── pages/
-│   │           └── splash_page.dart
 │   ├── exercise_1/
 │   │   └── presentation/
+│   │       ├── controller/
+│   │       │   └── exercise_1_controller.dart
 │   │       ├── pages/
 │   │       │   └── exercise_1_page.dart
 │   │       └── widgets/
-│   │           ├── animated_card_widget.dart
-│   │           ├── percentage_border_widget.dart
-│   │           └── lottie_icon_widget.dart
+│   │           └── exercise_1_card_widget.dart
 │   └── exercise_2/
 │       └── presentation/
+│           ├── controller/
+│           │   └── exercise_2_controller.dart
 │           ├── pages/
 │           │   └── exercise_2_page.dart
 │           └── widgets/
-│               ├── restaurant_card_widget.dart
-│               ├── footer_widget.dart
-│               └── blur_overlay_widget.dart
-├── widgetbook/
-│   └── lib/
-│       ├── exercise_1.dart        # Widgetbook stories with knobs
-│       └── exercise_2.dart
+│               ├── exercise_2_main_card_widget.dart
+│               ├── exercise_2_footer_card_widget.dart
+│               └── exercise_2_blur_overlay_widget.dart
+widgetbook/                        # Separate Flutter app for widget catalog
+├── lib/
+│   ├── main.dart                  # Custom home with Lottie animation
+│   ├── exercise_1.dart            # Exercise 1 use cases
+│   └── exercise_2.dart            # Exercise 2 use cases
+└── assets/                        # Local assets copy
 assets/
 ├── fonts/                         # Aktiv Grotesk font family
 ├── images/                        # PNG images (ff_logo, ff_website)
 ├── svg/                           # SVG icons
 └── animations/                    # Lottie JSON files
 test/
-├── flutter_test_config.dart       # Golden test configuration
+├── unit/                          # Unit tests for controllers
+├── widget/                        # Widget tests
 └── golden/
     ├── base/
     │   └── base_test.dart         # Multi-device test base
     ├── exercise_1/
-    │   └── exercise_1_golden_test.dart
     └── exercise_2/
-        └── exercise_2_golden_test.dart
 ```
 
 ## Technical Highlights
@@ -184,22 +204,75 @@ class PercentageBorderPainter extends CustomPainter {
 }
 ```
 
-### Scroll-Triggered Footer Animation
+### Internationalization (i18n)
 
-Footer visibility is controlled by scroll direction detection:
+Using GetX translations with automatic locale detection:
 
 ```dart
-NotificationListener<ScrollNotification>(
-  onNotification: (notification) {
-    if (notification is ScrollUpdateNotification) {
-      final delta = notification.scrollDelta ?? 0;
-      if (delta > 0) _showFooter();  // Scrolling down
-      else if (delta < 0) _hideFooter();  // Scrolling up
-    }
-    return false;
-  },
-  child: ListView(...),
+// lib/core/l10n/app_translations.dart
+class AppTranslations extends Translations {
+  @override
+  Map<String, Map<String, String>> get keys => {
+    'en_US': {
+      'loading_file': 'Loading File',
+      'view_button': 'View',
+    },
+    'pt_BR': {
+      'loading_file': 'Carregando Arquivo',
+      'view_button': 'Ver',
+    },
+  };
+}
+
+// Usage
+Text('loading_file'.tr)  // Auto-translates based on system locale
+```
+
+### Dynamic Dark Mode
+
+Context-based color extension for reactive theming:
+
+```dart
+// lib/core/theme/app_colors.dart
+extension AppColorsExtension on BuildContext {
+  bool get isDark => Theme.of(this).brightness == Brightness.dark;
+  Color get backgroundColor => isDark ? darkBackground : masterColorA;
+  Color get cardColor => isDark ? darkCardBackground : cardBackground;
+  Color get textPrimaryColor => isDark ? darkTextPrimary : darkColor;
+}
+
+// Usage - colors update automatically when system theme changes
+Container(
+  color: context.backgroundColor,
+  child: Text('Hello', style: TextStyle(color: context.textPrimaryColor)),
 )
+```
+
+### Micro-Animations with GetX
+
+Button animations using GetX reactive state (no setState):
+
+```dart
+class _AnimatedButton extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final isPressed = false.obs;
+
+    return GestureDetector(
+      onTapDown: (_) => isPressed.value = true,
+      onTapUp: (_) {
+        isPressed.value = false;
+        HapticFeedback.lightImpact();
+        onPressed?.call();
+      },
+      child: Obx(() => AnimatedScale(
+        scale: isPressed.value ? 0.95 : 1.0,
+        duration: const Duration(milliseconds: 100),
+        child: Container(...),
+      )),
+    );
+  }
+}
 ```
 
 ## Installation
@@ -248,6 +321,24 @@ flutter run -d chrome
 
 ## Testing
 
+### Running All Tests
+
+```bash
+flutter test
+```
+
+### Running Unit Tests
+
+```bash
+flutter test test/unit/
+```
+
+### Running Widget Tests
+
+```bash
+flutter test test/widget/
+```
+
 ### Running Golden Tests
 
 ```bash
@@ -267,6 +358,7 @@ Golden tests run on multiple device sizes:
 - iPhone 16 Pro (402x874)
 - iPhone 16 Pro Max (440x956)
 - Tablet (1024x768)
+- Tablet Vertical (768x1024)
 
 ## Animations Overview
 
@@ -282,6 +374,8 @@ Golden tests run on multiple device sizes:
 
 ## Color Palette
 
+### Light Mode
+
 | Name | Hex | Usage |
 |------|-----|-------|
 | Master Color A | `#E8E8E3` | Background |
@@ -290,6 +384,16 @@ Golden tests run on multiple device sizes:
 | Dark | `#0E0F10` | Primary text |
 | Light | `#FAFAFA` | Button text |
 | Tagline | `#808080` | Secondary text |
+
+### Dark Mode
+
+| Name | Hex | Usage |
+|------|-----|-------|
+| Dark Background | `#121212` | Background |
+| Dark Card | `#1E1E1E` | Card fill |
+| Dark Text Primary | `#E8E8E3` | Primary text |
+| Dark Text Secondary | `#A0A0A0` | Secondary text |
+| Dark Footer | `#2A2A2A` | Footer background |
 
 ## Screenshots
 

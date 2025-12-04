@@ -29,7 +29,7 @@ Widget buildExercise1CardWidget(BuildContext context) {
         AppMeasurements.setAppMeasurements(ctx);
 
         return Scaffold(
-          backgroundColor: appBackground,
+          backgroundColor: ctx.backgroundColor,
           body: Center(
             child: Exercise1CardWidget(
               title: title,

@@ -20,7 +20,7 @@ class BaseBackground extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: backgroundColor ?? masterColorA,
+      backgroundColor: backgroundColor ?? context.backgroundColor,
       bottomNavigationBar: bottomNavigationBar,
       resizeToAvoidBottomInset: resizeToAvoidBottomInset,
       body: SafeArea(

@@ -55,6 +55,16 @@ final directories = <_widgetbook.WidgetbookNode>[
                 name: 'widgets',
                 children: [
                   _widgetbook.WidgetbookComponent(
+                    name: 'Exercise2BlurOverlayWidget',
+                    useCases: [
+                      _widgetbook.WidgetbookUseCase(
+                        name: 'Blur Overlay',
+                        builder: _widgetbook_workspace_exercise_2
+                            .buildExercise2BlurOverlayWidget,
+                      ),
+                    ],
+                  ),
+                  _widgetbook.WidgetbookComponent(
                     name: 'Exercise2FooterCardWidget',
                     useCases: [
                       _widgetbook.WidgetbookUseCase(

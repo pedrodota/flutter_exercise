@@ -9,6 +9,8 @@ class Exercise2BlurOverlayWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final bgColor = context.backgroundColor;
+
     return IgnorePointer(
       child: ClipRect(
         child: BackdropFilter(
@@ -21,10 +23,10 @@ class Exercise2BlurOverlayWidget extends StatelessWidget {
                 end: Alignment.bottomCenter,
                 stops: const [0.0, 0.4, 0.75, 1.0],
                 colors: [
-                  masterColorA.withValues(alpha: 0),
-                  masterColorA.withValues(alpha: 0.3),
-                  masterColorA.withValues(alpha: 0.8),
-                  masterColorA,
+                  bgColor.withValues(alpha: 0),
+                  bgColor.withValues(alpha: 0.3),
+                  bgColor.withValues(alpha: 0.8),
+                  bgColor,
                 ],
               ),
             ),

@@ -7,10 +7,8 @@ class Exercise2Controller extends BaseController {
   late RxDouble _footerProgress;
   late RxBool _isAtBottom;
 
-  /// Key para rastrear a posição do card principal
   final GlobalKey mainCardKey = GlobalKey();
 
-  /// 0.0 = escondido, 1.0 = totalmente visível
   double get footerProgress => _footerProgress.value;
   set footerProgress(double value) => _footerProgress.value = value;
 

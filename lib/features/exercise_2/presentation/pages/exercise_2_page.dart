@@ -51,7 +51,7 @@ class _Exercise2PageState extends MState<Exercise2Page, Exercise2Controller> {
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: TextWidget(
-          'Press back again to exit',
+          'press_back_again'.tr,
           fontSize: context.font_14sp,
           fontWeight: mediumWeight,
           textColor: lightColor,
@@ -93,33 +93,32 @@ class _Exercise2PageState extends MState<Exercise2Page, Exercise2Controller> {
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w), // 8px
                   child: TextWidget(
-                    "Here's your landing page:",
+                    'heres_your_landing_page'.tr,
                     fontSize: context.font_20sp,
                     fontWeight: regularWeight,
-                    textColor: darkColor,
+                    textColor: context.textPrimaryColor,
                     verticalSpacing: 1.2,
-                    
                   ),
                 ),
-                VerticalSpacing(1.75), // gap: 40px
+                const VerticalSpacing(1.75), // gap: 40px
                 // Main Card with Image
                 Exercise2MainCardWidget(
                   key: controller.mainCardKey,
                   imageAsset: ffWebsite,
-                  title: 'Form&Fun Landing Page',
-                  subtitle: 'HTML',
-                  buttonText: 'View',
+                  title: 'landing_page_title'.tr,
+                  subtitle: 'landing_page_subtitle'.tr,
+                  buttonText: 'view_button'.tr,
                   onButtonPressed: _openFormAndFunWebsite,
                 ),
-                VerticalSpacing(1.5),
+                const VerticalSpacing(1.5),
                 // Long Description Text
                 Padding(
                   padding: EdgeInsets.symmetric(horizontal: 2.w), // 8px
                   child: TextWidget(
-                    _getLongDescription(),
+                    'long_description'.tr,
                     fontSize: context.font_20sp,
                     fontWeight: regularWeight,
-                    textColor: darkColor,
+                    textColor: context.textPrimaryColor,
                     verticalSpacing: 1.2,
                     maxLines: null,
                     overflow: TextOverflow.visible,
@@ -151,8 +150,8 @@ class _Exercise2PageState extends MState<Exercise2Page, Exercise2Controller> {
               bottom: footerBottomPosition,
               child: Exercise2FooterCardWidget(
                 logoAsset: ffLogo,
-                title: 'Form&Fun',
-                subtitle: 'formandfun.co',
+                title: 'footer_title'.tr,
+                subtitle: 'footer_subtitle'.tr,
                 onTap: _openFormAndFunWebsite,
               ),
             );
@@ -165,14 +164,33 @@ class _Exercise2PageState extends MState<Exercise2Page, Exercise2Controller> {
 
   Future<void> _openFormAndFunWebsite() async {
     final url = Uri.parse('https://www.formandfun.co');
-    if (await canLaunchUrl(url)) {
-      await launchUrl(url, mode: LaunchMode.externalApplication);
+    try {
+      if (await canLaunchUrl(url)) {
+        await launchUrl(url, mode: LaunchMode.externalApplication);
+      } else {
+        _showErrorSnackbar('could_not_open_website'.tr);
+      }
+    } catch (e) {
+      _showErrorSnackbar('error_opening_link'.tr);
     }
   }
 
-  String _getLongDescription() {
-    return '''Lorem ipsum dolor sit amet, consectetur adipiscing elit. Cras at odio quam. Etiam sed lorem id ligula egestas ornare non ac mauris. Proin non sagittis justo. Sed id viverra est. Integer enim sem, scelerisque vitae tristique sit amet, ullamcorper vel arcu. Nullam mollis posuere turpis, ac dignissim quam sodales eget. Aenean congue fringilla pretium. Morbi volutpat fringilla luctus. Donec et ligula sit amet mauris sodales tristique a ac quam. Donec vel libero a libero laoreet eleifend a ut nisi. Donec ut sem in orci gravida mattis eget ut nibh. Ut faucibus sollicitudin magna, ac sollicitudin ex tristique at.
-
-Pellentesque vehicula nisl et augue commodo, id bibendum urna tristique. Morbi in malesuada libero. Nullam rhoncus ex quis urna fringilla euismod vel imperdiet justo. Quisque condimentum cursus facilisis. Donec ex sem, efficitur sed sagittis ac, accumsan mattis libero. Pellentesque vulputate eget odio vel convallis. Proin malesuada pulvinar felis, sed lobortis sem porttitor ac. Vivamus molestie vehicula orci, efficitur rutrum nulla semper ac. Phasellus ut ligula tortor. In augue est, elementum a sodales eu, sodales id lectus. Sed ac luctus leo. Nullam a nulla pellentesque, scelerisque dolor in, mattis turpis.''';
+  void _showErrorSnackbar(String message) {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: TextWidget(
+          message,
+          fontSize: context.font_14sp,
+          fontWeight: mediumWeight,
+          textColor: lightColor,
+        ),
+        backgroundColor: darkColor,
+        behavior: SnackBarBehavior.floating,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(12),
+        ),
+        margin: EdgeInsets.symmetric(horizontal: 4.w, vertical: 2.h),
+      ),
+    );
   }
 }

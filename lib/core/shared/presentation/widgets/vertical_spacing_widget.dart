@@ -1,4 +1,5 @@
 import 'package:flutter/widgets.dart';
+import 'package:formfun_flutter_test/core/utils/measurements.dart';
 
 class VerticalSpacing extends StatelessWidget {
   const VerticalSpacing(this.spacing, {super.key});
@@ -7,8 +8,6 @@ class VerticalSpacing extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: MediaQuery.of(context).size.height * (spacing * 0.01),
-    );
+    return SizedBox(height: spacing.h);
   }
 }

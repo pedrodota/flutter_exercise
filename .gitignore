@@ -47,5 +47,4 @@ app.*.map.json
 # Project documentation (internal use only)
 MVP.md
 PROGRESS.md
-README.md
 CONTEXT.md

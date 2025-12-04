@@ -6,6 +6,7 @@ class AppTheme {
   static ThemeData get lightTheme => ThemeData(
         useMaterial3: true,
         fontFamily: fontAktivGrotesk,
+        brightness: Brightness.light,
         scaffoldBackgroundColor: masterColorA,
         colorScheme: const ColorScheme.light(
           primary: masterColorB,
@@ -45,6 +46,53 @@ class AppTheme {
             fontFamily: fontAktivGrotesk,
             fontWeight: regularWeight,
             color: taglineColor,
+          ),
+        ),
+      );
+
+  static ThemeData get darkTheme => ThemeData(
+        useMaterial3: true,
+        fontFamily: fontAktivGrotesk,
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: darkBackground,
+        colorScheme: const ColorScheme.dark(
+          primary: masterColorB,
+          secondary: masterColorB,
+          surface: darkCardBackground,
+          onPrimary: lightColor,
+          onSecondary: lightColor,
+          onSurface: darkTextPrimary,
+        ),
+        textTheme: const TextTheme(
+          displayLarge: TextStyle(
+            fontFamily: fontAktivGrotesk,
+            fontWeight: extraBoldWeight,
+            color: darkTextPrimary,
+          ),
+          displayMedium: TextStyle(
+            fontFamily: fontAktivGrotesk,
+            fontWeight: boldWeight,
+            color: darkTextPrimary,
+          ),
+          bodyLarge: TextStyle(
+            fontFamily: fontAktivGrotesk,
+            fontWeight: regularWeight,
+            color: darkTextPrimary,
+          ),
+          bodyMedium: TextStyle(
+            fontFamily: fontAktivGrotesk,
+            fontWeight: regularWeight,
+            color: darkTextPrimary,
+          ),
+          labelLarge: TextStyle(
+            fontFamily: fontAktivGrotesk,
+            fontWeight: mediumWeight,
+            color: darkTextPrimary,
+          ),
+          labelMedium: TextStyle(
+            fontFamily: fontAktivGrotesk,
+            fontWeight: regularWeight,
+            color: darkTextSecondary,
           ),
         ),
       );

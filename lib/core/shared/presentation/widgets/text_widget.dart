@@ -52,7 +52,7 @@ class TextWidget extends StatelessWidget {
 
   static TextStyle textStylePadrao = TextStyle(
     color: darkColor,
-    fontSize: 3.6.w,
-    fontWeight: FontWeight.normal,
+    fontSize: 14.sp,
+    fontWeight: regularWeight,
   );
 }

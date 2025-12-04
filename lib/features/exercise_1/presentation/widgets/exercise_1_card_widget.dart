@@ -25,63 +25,70 @@ class Exercise1CardWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     final double radius = 32;
 
-    return Container(
-      width: 92.w,
-      height: 50.w,
-      decoration: BoxDecoration(
-        color: cardBackground,
-        borderRadius: BorderRadius.circular(radius),
-        border: Border.all(color: const Color(0xFFE8E8E3), width: 1),
-        boxShadow: [ 
-          BoxShadow(
-            color: const Color(0xFFE5CAFE),
-            blurRadius: 6,
-            spreadRadius: 0,
-            offset: const Offset(0, 4),
+    return Semantics(
+      label: 'Loading file card. Progress: ${percentage.toInt()} percent. Time elapsed: $subtitle',
+      value: '${percentage.toInt()}%',
+      child: Container(
+        width: 92.w,
+        height: 50.w,
+        decoration: BoxDecoration(
+          color: context.cardColor,
+          borderRadius: BorderRadius.circular(radius),
+          border: Border.all(
+            color: context.isDark ? darkSurface : const Color(0xFFE8E8E3),
+            width: 1,
           ),
-          BoxShadow(
-            color: const Color(0xFF7E52F4).withValues(alpha: 0.15),
-            blurRadius: 12,
-            spreadRadius: 0,
-            offset: const Offset(0, 16),
-          ),
-        ],
-      ),
-      child: CustomPaint(
-        foregroundPainter: CardBorderPainter(
-          percentage: percentage,
-          borderRadius: radius,
+          boxShadow: context.isDark
+              ? null
+              : [
+                  BoxShadow(
+                    color: const Color(0xFFE5CAFE),
+                    blurRadius: 6,
+                    spreadRadius: 0,
+                    offset: const Offset(0, 4),
+                  ),
+                  BoxShadow(
+                    color: const Color(0xFF7E52F4).withValues(alpha: 0.15),
+                    blurRadius: 12,
+                    spreadRadius: 0,
+                    offset: const Offset(0, 16),
+                  ),
+                ],
         ),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Lottie.asset(
-              searchingAnimation,
-              width: 20.5.w,
-              height: 20.5.w,
-              fit: BoxFit.contain,
-              animate: animateLottie,
-            ),
-            const VerticalSpacing(2),
-            TextWidget(
-              title ,
-              fontSize: context.font_14sp,
-              fontWeight: semiBoldWeight,
-              textColor: darkColor,
-              maxLines: 2,
-              verticalSpacing: 18 / 14,
-              textAlign: TextAlign.center,
-            ),
-            const VerticalSpacing(1.75),
-            TextWidget(
-              subtitle,
-              fontSize: context.font_12sp,
-              fontWeight: regularWeight,
-              textColor: taglineColor,
-              verticalSpacing: 15 / 12,
-              textAlign: TextAlign.center,
-            ),
-          ],
+        child: CustomPaint(
+          foregroundPainter: CardBorderPainter(
+            percentage: percentage,
+            borderRadius: radius,
+          ),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Lottie.asset(
+                searchingAnimation,
+                width: 20.5.w,
+                height: 20.5.w,
+                fit: BoxFit.contain,
+                animate: animateLottie,
+              ),
+              const VerticalSpacing(2),
+              TextWidget(
+                title,
+                fontSize: context.font_14sp,
+                fontWeight: semiBoldWeight,
+                textColor: context.textPrimaryColor,
+                maxLines: 2,
+                textAlign: TextAlign.center,
+              ),
+              const VerticalSpacing(1.75),
+              TextWidget(
+                subtitle,
+                fontSize: context.font_12sp,
+                fontWeight: regularWeight,
+                textColor: context.textSecondaryColor,
+                textAlign: TextAlign.center,
+              ),
+            ],
+          ),
         ),
       ),
     );
